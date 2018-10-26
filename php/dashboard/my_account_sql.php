@@ -6,11 +6,6 @@
     exit;
   }
 
-  if($_SESSION['role'] != "ADMIN"){
-    header('Location: 403.php');
-    exit;
-  }
-
   require_once("config/parameters.php");
   require_once("config/connection.php");
 
@@ -19,9 +14,9 @@
   ];
 
   $hash = password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
-  
+
   $query = $mysql->prepare("UPDATE users SET password=:hash WHERE id=:id");
-  
+
   $query->execute([
     ':hash' => $hash,
     ':id' => $_POST['id']

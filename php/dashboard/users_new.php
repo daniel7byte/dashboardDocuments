@@ -11,6 +11,7 @@
     exit;
   }
 
+  include 'dictionary/langHandler.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,7 +25,7 @@
   <link rel="shortcut icon" href="img/favicon.png">
 
 <link rel="stylesheet" href="vendor/datatables/datatables.min.css">
-  
+
     <link rel="stylesheet" href="fonts/open-sans/style.min.css"> <!-- common font  styles  -->
 <link rel="stylesheet" href="fonts/universe-admin/style.css"> <!-- universeadmin icon font styles -->
 <link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css"> <!-- meterialdesignicons -->
@@ -37,7 +38,7 @@
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"> <!-- original bootstrap styles -->
 <link rel="stylesheet" href="css/style.min.css" id="stylesheet"> <!-- universeadmin styles -->
 
-  
+
 
   <script src="js/ie.assign.fix.min.js"></script>
 </head>
@@ -70,7 +71,7 @@
 
 
   <div class="page-wrap">
-    
+
     <div class="sidebar">
       <?php include("menu.php"); ?>
     </div>
@@ -78,7 +79,7 @@
 
 
     <div class="page-content">
-      
+
       <div class="container-fluid container-fh l-2column">
 
         <div class="m-content">
@@ -119,28 +120,6 @@
                         <select id="role" name="role" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
                           <option selected="" value="USER">USER</option>
                           <option value="ADMIN">ADMIN</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <div class="fl-wrap fl-wrap-select"><label for="id_zone" class="fl-label">Zona</label>
-                        <select id="id_zone" name="id_zone" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
-                          <?php
-
-                            require_once("config/parameters.php");
-                            require_once("config/connection.php");
-
-                            $query = $mysql->prepare("SELECT * FROM zones ORDER BY id ASC");
-                            $query->execute();
-                            $result = $query->fetchAll();
-
-                            foreach ($result as $row):
-                          ?>
-                            <option value="<?=$row['id']?>"><?=$row['title']?></option>
-                          <?php endforeach; ?>
-                        
                         </select>
                       </div>
                     </div>

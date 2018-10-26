@@ -11,6 +11,7 @@
     exit;
   }
 
+  include 'dictionary/langHandler.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,8 +24,8 @@
   <title>Gestion Tropicali</title>
   <link rel="shortcut icon" href="img/favicon.png">
 
-<link rel="stylesheet" href="vendor/datatables/datatables.min.css">
-  
+<link rel="stylesheet" href="vendor/sumo-select/sumoselect.min.css">
+
     <link rel="stylesheet" href="fonts/open-sans/style.min.css"> <!-- common font  styles  -->
 <link rel="stylesheet" href="fonts/universe-admin/style.css"> <!-- universeadmin icon font styles -->
 <link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css"> <!-- meterialdesignicons -->
@@ -37,7 +38,7 @@
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"> <!-- original bootstrap styles -->
 <link rel="stylesheet" href="css/style.min.css" id="stylesheet"> <!-- universeadmin styles -->
 
-  
+
 
   <script src="js/ie.assign.fix.min.js"></script>
 </head>
@@ -70,7 +71,7 @@
 
 
   <div class="page-wrap">
-    
+
     <div class="sidebar">
       <?php include("menu.php"); ?>
     </div>
@@ -78,14 +79,14 @@
 
 
     <div class="page-content">
-      
+
       <div class="container-fluid container-fh l-2column">
 
         <div class="m-content">
 
           <div class="page-content__header">
             <div>
-              <h2 class="page-content__header-heading">Documentos</h2>
+              <h2 class="page-content__header-heading"><?=DOCUMENTS?></h2>
             </div>
           </div>
 
@@ -109,12 +110,51 @@
                       </div>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <label for="description" class="fl-label">Privacidad</label>
+                    <select class="form-control" id="type" onchange="validePrivate();">
+                      <option value="Private"><?=tPRIVATE?></option>
+                      <option value="Public"><?=tPUBLIC?></option>
+                    </select>
+                  </div>
+                  <script>
+                    function validePrivate(){
+                      if ($('#type').val() == 'Public') {
+                        $('#tagsUsers').hide();
+                      } else {
+                        $('#tagsUsers').show();
+                      }
+                    }
+                  </script>
+                  <div class="form-row" id="tagsUsers">
+                    <div class="form-group col-md-12">
+                      <div class="fl-wrap fl-wrap-select"><label for="priority" class="fl-label"><?=USERS?></label>
+                        <select id="selectbox-ex4" multiple="multiple" name="somename4" class="selectbox">
+                          <?php
+
+                            require_once("config/parameters.php");
+                            require_once("config/connection.php");
+
+                            $query = $mysql->prepare("SELECT * FROM users ORDER BY id DESC");
+                            $query->execute();
+                            $result = $query->fetchAll();
+
+                            foreach ($result as $row):
+                              echo "<option value='".$row['nick']."'>".$row['nick']."</option>";
+                            endforeach;
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <div class="fl-wrap fl-wrap-select"><label for="priority" class="fl-label">Prioridad</label>
                         <select id="priority" name="priority" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
-                          <option value="Normal">Normal</option>
-                          <option value="Urgente">Urgente</option>
+                          <option value="Critical"><?=Critical?></option>
+                          <option value="High"><?=High?></option>
+                          <option value="Medium"><?=Medium?></option>
+                          <option value="Low"><?=Low?></option>
                         </select>
                       </div>
                     </div>
@@ -144,10 +184,8 @@
   <script src="vendor/wnumb/wNumb.js"></script>
   <script src="js/main.js"></script>
 
-
-  <script src="vendor/datatables/datatables.min.js"></script>
-  <script src="js/preview/datatables.min.js"></script>
-
+  <script src="vendor/sumo-select/jquery.sumoselect.min.js"></script>
+  <script src="js/preview/select.min.js"></script>
 
   <div class="sidebar-mobile-overlay"></div>
 

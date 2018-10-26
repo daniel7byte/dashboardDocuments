@@ -6,6 +6,7 @@
     exit;
   }
 
+  include 'dictionary/langHandler.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,7 +19,7 @@
   <title>Gestion Tropicali</title>
   <link rel="shortcut icon" href="img/favicon.png">
 
-  
+
     <link rel="stylesheet" href="fonts/open-sans/style.min.css"> <!-- common font  styles  -->
 <link rel="stylesheet" href="fonts/universe-admin/style.css"> <!-- universeadmin icon font styles -->
 <link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css"> <!-- meterialdesignicons -->
@@ -31,7 +32,7 @@
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"> <!-- original bootstrap styles -->
 <link rel="stylesheet" href="css/style.min.css" id="stylesheet"> <!-- universeadmin styles -->
 
-  
+
 
   <script src="js/ie.assign.fix.min.js"></script>
 </head>
@@ -66,7 +67,7 @@
 <div class="page-wrap">
 
   <div class="page-content" style="margin-left: 0px;">
-    
+
 <div class="container-fluid p-error-page p-error-page--403">
   <div class="p-error-page__wrap">
     <div class="p-error-page__error">

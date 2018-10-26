@@ -19,7 +19,18 @@
 
 <div class="collapse navbar-collapse" id="navbar-collapse">
   <div class="navbar__menu">
-
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown navbar__menu-item">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+          <span class="iconfont-globe dropdown-item__icon"></span> <?=LANG?>
+        </a>
+        <div class="dropdown-menu navbar__menu-dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#" onclick="switchLanguage('en');">EN</a>
+          <a class="dropdown-item" href="#" onclick="switchLanguage('es');">ES</a>
+          <script src="dictionary/script/lang.js"></script>
+        </div>
+      </li>
+    </ul>
   </div>
   <div class="dropdown navbar-dropdown">
     <a class="dropdown-toggle navbar-dropdown-toggle navbar-dropdown-toggle__user" data-toggle="dropdown" href="#">
@@ -30,7 +41,7 @@
         <div class="dropdown-user__avatar"><img src="img/users/user-3.png" alt=""/></div>
         <div class="dropdown-info">
           <div class="dropdown-info__name"><?=$_SESSION['full_name']?></div>
-          <div class="dropdown-info__job"><?=$_SESSION['nick']?> - <?=$_SESSION['role']?></div>
+          <div class="dropdown-info__job"><?=$_SESSION['nick']?> (<?=$_SESSION['role']?>)</div>
         </div>
       </div>
       <a class="dropdown-item navbar-dropdown__item" href="my_account.php">Cambiar contraseña</a>

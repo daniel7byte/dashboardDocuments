@@ -6,6 +6,7 @@
     exit;
   }
 
+  include 'dictionary/langHandler.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,9 +17,9 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <link rel="shortcut icon" href="img/favicon.png">
-  <title>Gestion Tropicali</title>
+  <title>Dashboard Documents</title>
 
-  
+
     <link rel="stylesheet" href="fonts/open-sans/style.min.css"> <!-- common font  styles  -->
 <link rel="stylesheet" href="fonts/universe-admin/style.css"> <!-- universeadmin icon font styles -->
 <link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css"> <!-- meterialdesignicons -->
@@ -31,7 +32,7 @@
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"> <!-- original bootstrap styles -->
 <link rel="stylesheet" href="css/style.min.css" id="stylesheet"> <!-- universeadmin styles -->
 
-  
+
 
   <script src="js/ie.assign.fix.min.js"></script>
 </head>
@@ -47,10 +48,10 @@
 
 
 <div class="p-front__content">
-  
+
 <div class="p-signin">
   <form class="p-signin__form" method="POST" action="auth/validation.php">
-    <h2 class="p-signin__form-heading">Ingresa a Tropicali 2.0</h2>
+    <h2 class="p-signin__form-heading">Ingresa a Dashboard Documents 3.0</h2>
     <div class="p-signin__form-content">
       <div class="row">
         <div class="form-group col-md-12">

@@ -23,6 +23,7 @@
     $priority = $row['priority'];
   }
 
+  include 'dictionary/langHandler.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,7 +37,7 @@
   <link rel="shortcut icon" href="img/favicon.png">
 
 <link rel="stylesheet" href="vendor/datatables/datatables.min.css">
-  
+
     <link rel="stylesheet" href="fonts/open-sans/style.min.css"> <!-- common font  styles  -->
 <link rel="stylesheet" href="fonts/universe-admin/style.css"> <!-- universeadmin icon font styles -->
 <link rel="stylesheet" href="fonts/mdi/css/materialdesignicons.min.css"> <!-- meterialdesignicons -->
@@ -49,7 +50,7 @@
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"> <!-- original bootstrap styles -->
 <link rel="stylesheet" href="css/style.min.css" id="stylesheet"> <!-- universeadmin styles -->
 
-  
+
 
   <script src="js/ie.assign.fix.min.js"></script>
 </head>
@@ -82,7 +83,7 @@
 
 
   <div class="page-wrap">
-    
+
     <div class="sidebar">
       <?php include("menu.php"); ?>
     </div>
@@ -90,7 +91,7 @@
 
 
     <div class="page-content">
-      
+
       <div class="container-fluid container-fh l-2column">
 
         <div class="m-content">

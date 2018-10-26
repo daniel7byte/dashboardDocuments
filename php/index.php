@@ -10,7 +10,7 @@
     require_once("dashboard/config/connection.php");
 
     $query = $mysql->prepare("SELECT * FROM news WHERE type = :type ORDER BY id DESC");
-    $query->execute([':type' => 'Publico']);
+    $query->execute([':type' => 'Public']);
     $result = $query->fetchAll();
 
     foreach ($result as $row):
