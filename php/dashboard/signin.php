@@ -42,6 +42,23 @@
   <div class="navbar navbar-light navbar-expand-lg p-front__navbar"> <!-- is-dark -->
     <a class="navbar-brand" href="/"><img src="img/logo.png" alt=""/></a>
     <a class="navbar-brand-sm" href="/"><img src="img/logo-sm.png" alt=""/></a>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+    <div class="navbar__menu">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown navbar__menu-item">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+            <span class="iconfont-globe dropdown-item__icon"></span> <?=LANG?>
+          </a>
+          <div class="dropdown-menu navbar__menu-dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" onclick="switchLanguage('en');">EN</a>
+            <a class="dropdown-item" href="#" onclick="switchLanguage('es');">ES</a>
+            <script src="dictionary/script/lang.js"></script>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   </div>
 
 
@@ -51,22 +68,22 @@
 
 <div class="p-signin">
   <form class="p-signin__form" method="POST" action="auth/validation.php">
-    <h2 class="p-signin__form-heading">Ingresa a Dashboard Documents 3.0</h2>
+    <h2 class="p-signin__form-heading">Dashboard Documents 3.0</h2>
     <div class="p-signin__form-content">
       <div class="row">
         <div class="form-group col-md-12">
-          <label for="p-signin-work-email">Usuario</label>
+          <label for="p-signin-work-email"><?=User?></label>
           <input type="text" name="nick" id="nick" class="form-control" id="p-signin-work-email" placeholder="example123" required="required">
         </div>
       </div>
       <div class="row">
         <div class="form-group col-md-12">
-          <label for="p-signin-set-password">Contraseña</label>
+          <label for="p-signin-set-password"><?=Password?></label>
           <input type="password" name="password" id="password" class="form-control" id="p-signin-set-password" placeholder="*****" required="required">
         </div>
       </div>
       <div>
-        <button type="submit" class="btn btn-info btn-block btn-lg p-signin__form-submit">Entrar!</button>
+        <button type="submit" class="btn btn-info btn-block btn-lg p-signin__form-submit"><?=Enter?></button>
       </div>
     </div>
   </form>
@@ -78,17 +95,11 @@
 
 <footer class="p-front__footer">
   <ul class="nav">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link active" href="#">Contact</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">FAQ</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Terms of Service</a>
-    </li>
+    </li> -->
   </ul>
-  <span>2017 &copy; UniverseAdmin</span>
+  <span><a href="mailto:daniel7byte@gmail.com">Copyright (c) 2018 Jose Daniel Posso Garcia</a></span>
 </footer>
 
 

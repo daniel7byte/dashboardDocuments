@@ -5,6 +5,7 @@ define("DOCUMENTS", 'Documents');
 define("USERS", 'Users');
 
 define("File", 'File');
+define("Enter", 'Enter');
 
 // Btn
 define("Create", 'Create');

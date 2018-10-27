@@ -10,5 +10,5 @@
       <div id="page-loader-progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </div>
-  <div class="page-preloader__copyright">Daniel7Byte, 2018</div>
+  <div class="page-preloader__copyright"><a href="mailto:daniel7byte@gmail.com">Copyright (c) 2018 Jose Daniel Posso Garcia</a></div>
 </div>
