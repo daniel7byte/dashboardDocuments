@@ -22,7 +22,6 @@
     $nick = $row['nick'];
     $full_name = $row['full_name'];
     $role = $row['role'];
-    $id_zone = $row['id_zone'];
   }
 
   include 'dictionary/langHandler.php';
@@ -60,20 +59,7 @@
 
 
 
-  <div class="page-preloader js-page-preloader">
-    <div class="page-preloader__logo">
-      <img src="img/logo-black-lg.png" alt="" class="page-preloader__logo-image">
-    </div>
-    <div class="page-preloader__desc">Pro Edition</div>
-    <div class="page-preloader__loader">
-      <div class="page-preloader__loader-heading">System Loading</div>
-      <div class="page-preloader__loader-desc">Widgets update</div>
-      <div class="progress progress-rounded page-preloader__loader-progress">
-        <div id="page-loader-progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    </div>
-    <div class="page-preloader__copyright">Daniel7Byte, 2018</div>
-  </div>
+  <?php include 'page-preloader.php'; ?>
 
 
 
@@ -100,7 +86,7 @@
 
           <div class="page-content__header">
             <div>
-              <h2 class="page-content__header-heading">Usuarios</h2>
+              <h2 class="page-content__header-heading"><?=USERS?></h2>
             </div>
           </div>
 
@@ -112,13 +98,13 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="nick" class="fl-label">Usuario</label>
+                        <label for="nick" class="fl-label"><?=User?></label>
                         <input type="text" class="form-control fl-input" id="nick" name="nick" placeholder="example" data-placeholder="example" required="required" value="<?=$nick?>">
                       </div>
                     </div>
                     <div class="form-group col-md-6">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="password" class="fl-label">Contraseña</label>
+                        <label for="password" class="fl-label"><?=Password?></label>
                         <input type="password" class="form-control fl-input" id="password" name="password" placeholder="*****" data-placeholder="*****" required="required">
                       </div>
                     </div>
@@ -126,49 +112,22 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="full_name" class="fl-label">Nombre</label>
+                        <label for="full_name" class="fl-label"><?=Name?></label>
                         <input type="text" class="form-control fl-input" id="full_name" name="full_name" placeholder="Pepito Perez" required="required" value="<?=$full_name?>">
                       </div>
                     </div>
                     <div class="form-group col-md-6">
-                      <div class="fl-wrap fl-wrap-select"><label for="role" class="fl-label">Permiso</label>
+                      <div class="fl-wrap fl-wrap-select"><label for="role" class="fl-label"><?=Permissions?></label>
                         <select id="role" name="role" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
-                          <option selected="selected" value="<?=$role?>"><?=$role?> (ACTUAL)</option>
+                          <option selected="selected" value="<?=$role?>"><?=$role?> (<?=NOW?>)</option>
                           <option value="USER">USER</option>
+                          <option value="EDITOR">EDITOR</option>
                           <option value="ADMIN">ADMIN</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <div class="fl-wrap fl-wrap-select"><label for="id_zone" class="fl-label">Zona</label>
-                        <select id="id_zone" name="id_zone" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
-                          <?php
-                            $query = $mysql->prepare("SELECT * FROM zones WHERE id = :id");
-                            $query->execute([':id' => $id_zone]);
-                            $result = $query->fetchAll();
-
-                            foreach ($result as $row):
-                          ?>
-                            <option value="<?=$row['id']?>"><?=$row['title']?> (ACTUAL)</option>
-                          <?php endforeach; ?>
-
-                          <?php
-                            $query = $mysql->prepare("SELECT * FROM zones ORDER BY id ASC");
-                            $query->execute();
-                            $result = $query->fetchAll();
-
-                            foreach ($result as $row):
-                          ?>
-                            <option value="<?=$row['id']?>"><?=$row['title']?></option>
-                          <?php endforeach; ?>
-
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-info btn-block">Editar!</button>
+                  <button type="submit" class="btn btn-info btn-block"><?=Update?></button>
                 </form>
               </div>
             </div>
@@ -192,11 +151,6 @@
   <script src="vendor/flatpickr/flatpickr.min.js"></script>
   <script src="vendor/wnumb/wNumb.js"></script>
   <script src="js/main.js"></script>
-
-
-  <script src="vendor/datatables/datatables.min.js"></script>
-  <script src="js/preview/datatables.min.js"></script>
-
 
   <div class="sidebar-mobile-overlay"></div>
 

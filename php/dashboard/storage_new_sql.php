@@ -19,22 +19,33 @@
 
     $extension = explode(".", $_FILES["file"]["name"]);
     $extension = strtolower(end($extension));
-    
-    if($extension != "php"){
-      
-       if (is_uploaded_file($_FILES["file"]["tmp_name"])){
-        move_uploaded_file($_FILES["file"]["tmp_name"], "storage/" . $_FILES["file"]["name"]);
 
-        $query = $mysql->prepare("INSERT INTO storage (id, description, file, priority) VALUES (NULL, :description, :file, :priority)");
+    if($extension != "php"){
+
+       if (is_uploaded_file($_FILES["file"]["tmp_name"])){
+        move_uploaded_file($_FILES["file"]["tmp_name"], "storage/" . time() . "_" . $_FILES["file"]["name"]);
+
+        $tagsUsers = $_POST['users_nick'];
+
+        $users_nick = "";
+
+        for ($i=0; $i < count($tagsUsers); $i++) {
+          $users_nick .= $tagsUsers[$i] . ',';
+        }
+
+        $query = $mysql->prepare("INSERT INTO storage (id, description, file, priority, users_nick, type, file_check) VALUES (NULL, :description, :file, :priority, :users_nick, :type, 'N')");
         $query->execute([
+          ':users_nick' => $users_nick,
+          ':type' => $_POST['type'],
           ':description' => $_POST['description'],
-          ':file' => $_FILES["file"]["name"],
+          ':file' => time() . "_" . $_FILES["file"]["name"],
           ':priority' => $_POST['priority']
         ]);
 
         if($query) header('location: storage.php');
       } else {
-        header('location: storage.php');
+        echo "ERROR";
+        exit;
       }
 
     }else{

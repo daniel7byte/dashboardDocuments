@@ -1,0 +1,128 @@
+Táximo Challenge - Ingeniería de Soporte + Desarrollo
+
+Gracias por participar en la prueba para la selección del cargo: Ingeniero de Soporte + 
+desarrollador.
+
+A continuación encontrará dos problemas muy sencillos que miden las siguientes habilidades:
+- Pensamiento algorítmico
+- Habilidades de programación básica
+- Habilidades en comprensión y consultas de bases de datos
+
+Por favor tenga en cuenta:
+- El plazo máximo para la entrega es el día 29 de octubre de 2018 a las 23:59:59 (hora Colombiana)
+- No se recibirán pruebas enviadas luego de la fecha y la hora establecida
+- Realice los problemas por su cuenta, evitando la consulta de material externo, se le preguntará
+  por el código que entregue durante la entrevista, en caso de resultar seleccionado
+- El entregable debe ser:
+	- Un archivo llamado fizzbuzz.js con la solución del problema 1
+	- Un archivo llamado superheroes.sql con la consulta del problema 2
+- Enviar los entregables a alejandro.parra@taximo.co con el asunto:
+	- SOPORTE+DEV [su_nombre_aquí]
+
+En caso de tener alguna duda sobre los problemas o el proceso de contratación, por favor escribir a
+alejandro.parra@taximo.co
+
+===================================================================================================
+1. FIZZBUZZ (PROGRAMACIÓN)
+
+Escriba un programa que imprima los números de 1 a N, cada uno en una línea. Para múltiplos de tres 
+debe imprimir "Fizz" en vez del número 3 y para múltiplos de cinco debe imprimir "Buzz". Para aque-
+llos números que sean múltiplos de tres y cinco, debe imprimir "FizzBuzz".
+
+Este programa debe ser creado en Javascript o PHP, con una función principal llamada fizzbuzz que
+reciba el parámetro N. Por favor incluya en los comentarios las explicaciones que considere nece-
+sarias.
+
+Ejemplo de la entrada:
+	15
+
+Ejemplo de la salida:
+	1
+	2
+	Fizz
+	4
+	Buzz
+	Fizz
+	7
+	8
+	Fizz
+	Buzz
+	11
+	Fizz
+	13
+	14
+	FizzBuzz
+ 
+Explicación:
+	Las posiciones 3,6,9,12 tienen la palabra "Fizz" porque son múltiplos de 3.
+	Las posiciones 5 y 10 tienen la palabra "Buzz" orque son múltiplos de 5.
+	La posición 15 tiene la palabra "FizzBuzz" porque es un múltiplo de 3 y de 5.
+ 
+Restricciones:
+	N < 10^7
+
+
+===================================================================================================
+2. SALVEMOS A NULL ISLAND (BASES DE DATOS)
+
+La ubicación de los mejores superhéroes del planeta se almacena en la tabla 'superhero' que contiene 
+el nombre, la latitud y longitud de cada uno. Usted se entera que un malvado villano 'Bugman' va a 
+atacar Null Island, ubicada en la longitud = 0 y latitud = 0. Esta es su ciudad natal y la única 
+forma de salvarla es lograr que tres superhéroes estén a la llegada de Bugman.
+
+Suponiendo que todos pueden viajar a la misma velocidad, cree una consulta SQL que retorne a los tres 
+superhéroes más cercanos a usted (ordenados alfabéticamente), es decir, a los que llamaría para salvar 
+Null Island.
+
+La definición de la tabla superhero es:
+ Column |       Type        | Collation | Nullable |                 Default                 
+--------+-------------------+-----------+----------+-----------------------------------------
+ id     | integer           |           | not null | nextval('ticket_type_id_seq'::regclass)
+ name   | character varying |           | not null | 
+ lat    | double precision  |           | not null | 
+ lon    | double precision  |           | not null | 
+Indexes:
+    "superhero_pk" PRIMARY KEY, btree (id)
+
+
+La ubicación de los superhéroes:
+ id |        name         | lat  | lon  
+----+---------------------+------+------
+  1 | Ant-Man             |   88 |    0
+  2 | Aquaman             |  117 |  135
+  3 | Asterix             |   85 |    8
+  4 | The Atom            | -147 |  107
+  5 | Batgirl             |   32 |   91
+  6 | Batman              |  -40 |  100
+  7 | Batwoman            | -107 |   70
+  8 | Black Canary        | -139 |   85
+  9 | Black Panther       |  -34 |   91
+ 10 | Captain America     |  -78 |  -40
+ 11 | Catwoman            |  121 |  145
+ 12 | Conan the Barbarian | -132 |   37
+ 13 | Daredevil           |  144 |  -49
+ 14 | Doc Savage          |  -99 |  129
+ 15 | Doctor Strange      |  110 |  -50
+ 16 | Elektra             |   -2 | -123
+ 17 | Ghost Rider         |  -92 |  -83
+ 18 | Green Arrow         |  126 | -116
+ 19 | Green Lantern       |   24 |   -2
+ 20 | Hawkeye             | -115 |  -20
+ 21 | Hellboy             |   74 |  -78
+ 22 | Incredible Hulk     |  165 | -122
+ 23 | Iron Fist           |  -50 | -104
+ 24 | Iron Man            |  125 |  -30
+ 25 | Marvelman           |   99 |  -34
+ 26 | Robin               | -138 |   29
+ 27 | The Rocketeer       |  128 |  -67
+ 28 | The Shadow          |   94 |  108
+ 29 | Spider-Man          |  177 |   69
+ 30 | Sub-Mariner         |  -99 |  -19
+ 31 | Supergirl           |  140 |  147
+ 32 | Superman            |   36 | -104
+ 33 | The Wasp            | -129 |  -36
+ 34 | Wolverine           |  -30 | -166
+ 35 | Wonder Woman        |  -56 |  111
+ 36 | Zatanna             |   24 |  -32
+ 37 | Zatara              |  170 |   -8
+

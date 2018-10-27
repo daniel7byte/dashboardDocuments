@@ -44,8 +44,8 @@
           <div class="dropdown-info__job"><?=$_SESSION['nick']?> (<?=$_SESSION['role']?>)</div>
         </div>
       </div>
-      <a class="dropdown-item navbar-dropdown__item" href="my_account.php">Cambiar contraseña</a>
-      <a class="dropdown-item navbar-dropdown__item" href="auth/logout.php">Cerrar sesión</a>
+      <a class="dropdown-item navbar-dropdown__item" href="my_account.php"><?=ChangePassword?></a>
+      <a class="dropdown-item navbar-dropdown__item" href="auth/logout.php"><?=SignOff?></a>
     </div>
   </div>
 </div>

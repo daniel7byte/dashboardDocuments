@@ -41,20 +41,7 @@
 
 
 
-  <div class="page-preloader js-page-preloader">
-    <div class="page-preloader__logo">
-      <img src="img/logo-black-lg.png" alt="" class="page-preloader__logo-image">
-    </div>
-    <div class="page-preloader__desc">Pro Edition</div>
-    <div class="page-preloader__loader">
-      <div class="page-preloader__loader-heading">System Loading</div>
-      <div class="page-preloader__loader-desc">Widgets update</div>
-      <div class="progress progress-rounded page-preloader__loader-progress">
-        <div id="page-loader-progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    </div>
-    <div class="page-preloader__copyright">Daniel7Byte, 2018</div>
-  </div>
+  <?php include 'page-preloader.php'; ?>
 
 
 
@@ -81,17 +68,17 @@
 
           <div class="page-content__header">
             <div>
-              <h2 class="page-content__header-heading">Documentos</h2>
+              <h2 class="page-content__header-heading"><?=DOCUMENTS?></h2>
             </div>
           </div>
           <div class="m-datatable">
             <table id="datatable" class="table table-striped">
               <thead>
               <tr>
-                <th>Fecha</th>
-                <th>Descripción</th>
-                <th>Prioridad</th>
-                <th>Acciones</th>
+                <th><?=Date?></th>
+                <th><?=Description?></th>
+                <th><?=Priority?></th>
+                <th><?=Actions?></th>
               </tr>
               </thead>
               <tbody>
@@ -100,8 +87,10 @@
                   require_once("config/parameters.php");
                   require_once("config/connection.php");
 
-                  $query = $mysql->prepare("SELECT * FROM storage ORDER BY id DESC");
-                  $query->execute();
+                  $users_nick = $_SESSION['nick'];
+
+                  $query = $mysql->prepare("SELECT * FROM storage WHERE file_check = 'Y' AND type = 'Public' OR users_nick LIKE :users_nick ORDER BY id DESC");
+                  $query->execute([':users_nick' => "%$users_nick%"]);
                   $result = $query->fetchAll();
 
                   foreach ($result as $row):

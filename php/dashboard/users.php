@@ -46,20 +46,7 @@
 
 
 
-  <div class="page-preloader js-page-preloader">
-    <div class="page-preloader__logo">
-      <img src="img/logo-black-lg.png" alt="" class="page-preloader__logo-image">
-    </div>
-    <div class="page-preloader__desc">Pro Edition</div>
-    <div class="page-preloader__loader">
-      <div class="page-preloader__loader-heading">System Loading</div>
-      <div class="page-preloader__loader-desc">Widgets update</div>
-      <div class="progress progress-rounded page-preloader__loader-progress">
-        <div id="page-loader-progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    </div>
-    <div class="page-preloader__copyright">Daniel7Byte, 2018</div>
-  </div>
+  <?php include 'page-preloader.php'; ?>
 
 
 
@@ -86,7 +73,7 @@
 
           <div class="page-content__header">
             <div>
-              <h2 class="page-content__header-heading">Usuarios</h2>
+              <h2 class="page-content__header-heading"><?=USERS?></h2>
             </div>
           </div>
           <div class="m-datatable">
@@ -94,11 +81,10 @@
               <thead>
               <tr>
                 <th>ID</th>
-                <th>Usuario</th>
-                <th>Nombre</th>
-                <th>Zona</th>
-                <th>Permiso</th>
-                <th>Acciones</th>
+                <th><?=Nick?></th>
+                <th><?=Name?></th>
+                <th><?=Permissions?></th>
+                <th><?=Actions?></th>
               </tr>
               </thead>
               <tbody>
@@ -117,27 +103,15 @@
                   <td><?=$row['id']?></td>
                   <td><?=$row['nick']?></td>
                   <td><?=$row['full_name']?></td>
-                  <td>
-                    <?php
-                      $queryZone = $mysql->prepare("SELECT * FROM zones WHERE id = :id");
-                      $queryZone->execute([':id' => $row['id_zone']]);
-                      $resultZone = $queryZone->fetchAll();
-
-                      foreach ($resultZone as $rowZone):
-                    ?>
-                      <?=$rowZone['title']?>
-                    <?php endforeach; ?>
-
-                  </td>
                   <td><?=$row['role']?></td>
                   <td>
                     <div class="dropdown card-widget-d__dropdown">
                       <button class="btn btn-outline-info dropdown-toggle card-widget-d__control" type="button" data-toggle="dropdown">
-                        Editar
+                        <?=Edit?>
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="users_edit.php?id=<?=$row['id']?>">Editar</a>
-                        <a class="dropdown-item" href="users_delete_sql.php?id=<?=$row['id']?>">Eliminar</a>
+                        <a class="dropdown-item" href="users_edit.php?id=<?=$row['id']?>"><?=Edit?></a>
+                        <a class="dropdown-item" href="users_delete_sql.php?id=<?=$row['id']?>"><?=Delete?></a>
                       </div>
                     </div>
                   </td>

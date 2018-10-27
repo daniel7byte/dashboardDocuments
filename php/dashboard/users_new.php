@@ -46,20 +46,7 @@
 
 
 
-  <div class="page-preloader js-page-preloader">
-    <div class="page-preloader__logo">
-      <img src="img/logo-black-lg.png" alt="" class="page-preloader__logo-image">
-    </div>
-    <div class="page-preloader__desc">Pro Edition</div>
-    <div class="page-preloader__loader">
-      <div class="page-preloader__loader-heading">System Loading</div>
-      <div class="page-preloader__loader-desc">Widgets update</div>
-      <div class="progress progress-rounded page-preloader__loader-progress">
-        <div id="page-loader-progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    </div>
-    <div class="page-preloader__copyright">Daniel7Byte, 2018</div>
-  </div>
+  <?php include 'page-preloader.php'; ?>
 
 
 
@@ -86,7 +73,7 @@
 
           <div class="page-content__header">
             <div>
-              <h2 class="page-content__header-heading">Usuarios</h2>
+              <h2 class="page-content__header-heading"><?=USERS?></h2>
             </div>
           </div>
 
@@ -97,13 +84,13 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="nick" class="fl-label">Usuario</label>
+                        <label for="nick" class="fl-label"><?=User?></label>
                         <input type="text" class="form-control fl-input" id="nick" name="nick" placeholder="example" data-placeholder="example" required="required">
                       </div>
                     </div>
                     <div class="form-group col-md-6">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="password" class="fl-label">Contraseña</label>
+                        <label for="password" class="fl-label"><?=Password?></label>
                         <input type="password" class="form-control fl-input" id="password" name="password" placeholder="*****" data-placeholder="*****" required="required">
                       </div>
                     </div>
@@ -111,20 +98,21 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="full_name" class="fl-label">Nombre</label>
+                        <label for="full_name" class="fl-label"><?=Name?></label>
                         <input type="text" class="form-control fl-input" id="full_name" name="full_name" placeholder="Pepito Perez" required="required">
                       </div>
                     </div>
                     <div class="form-group col-md-6">
-                      <div class="fl-wrap fl-wrap-select"><label for="role" class="fl-label">Permiso</label>
+                      <div class="fl-wrap fl-wrap-select"><label for="role" class="fl-label"><?=Permissions?></label>
                         <select id="role" name="role" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
-                          <option selected="" value="USER">USER</option>
+                          <option value="USER" selected>USER</option>
+                          <option value="EDITOR">EDITOR</option>
                           <option value="ADMIN">ADMIN</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-info btn-block">Crear!</button>
+                  <button type="submit" class="btn btn-info btn-block"><?=Create?></button>
                 </form>
               </div>
             </div>

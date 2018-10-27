@@ -46,20 +46,7 @@
 
 
 
-  <div class="page-preloader js-page-preloader">
-    <div class="page-preloader__logo">
-      <img src="img/logo-black-lg.png" alt="" class="page-preloader__logo-image">
-    </div>
-    <div class="page-preloader__desc">Pro Edition</div>
-    <div class="page-preloader__loader">
-      <div class="page-preloader__loader-heading">System Loading</div>
-      <div class="page-preloader__loader-desc">Widgets update</div>
-      <div class="progress progress-rounded page-preloader__loader-progress">
-        <div id="page-loader-progress-bar" class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    </div>
-    <div class="page-preloader__copyright">Daniel7Byte, 2018</div>
-  </div>
+  <?php include 'page-preloader.php'; ?>
 
 
 
@@ -97,7 +84,7 @@
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="description" class="fl-label">Descripcion</label>
+                        <label for="description" class="fl-label"><?=Description?></label>
                         <input type="text" class="form-control fl-input" id="description" name="description" placeholder="example" data-placeholder="example" required="required">
                       </div>
                     </div>
@@ -105,31 +92,22 @@
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="file" class="fl-label">Archivo</label>
+                        <label for="file" class="fl-label"><?=File?></label>
                         <input type="file" class="form-control fl-input" id="file" name="file" required="required">
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="description" class="fl-label">Privacidad</label>
-                    <select class="form-control" id="type" onchange="validePrivate();">
+                    <label for="type" class="fl-label"><?=Privacy?></label>
+                    <select class="form-control" id="type" name="type" onchange="validePrivate();">
                       <option value="Private"><?=tPRIVATE?></option>
                       <option value="Public"><?=tPUBLIC?></option>
                     </select>
                   </div>
-                  <script>
-                    function validePrivate(){
-                      if ($('#type').val() == 'Public') {
-                        $('#tagsUsers').hide();
-                      } else {
-                        $('#tagsUsers').show();
-                      }
-                    }
-                  </script>
                   <div class="form-row" id="tagsUsers">
                     <div class="form-group col-md-12">
-                      <div class="fl-wrap fl-wrap-select"><label for="priority" class="fl-label"><?=USERS?></label>
-                        <select id="selectbox-ex4" multiple="multiple" name="somename4" class="selectbox">
+                      <div class="fl-wrap fl-wrap-select"><label for="users_nick" class="fl-label"><?=USERS?></label>
+                        <select id="selectbox-ex4" multiple="multiple" name="users_nick[]" class="selectbox">
                           <?php
 
                             require_once("config/parameters.php");
@@ -149,17 +127,17 @@
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <div class="fl-wrap fl-wrap-select"><label for="priority" class="fl-label">Prioridad</label>
+                      <div class="fl-wrap fl-wrap-select"><label for="priority" class="fl-label"><?=Priority?></label>
                         <select id="priority" name="priority" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
                           <option value="Critical"><?=Critical?></option>
                           <option value="High"><?=High?></option>
-                          <option value="Medium"><?=Medium?></option>
+                          <option value="Medium" selected><?=Medium?></option>
                           <option value="Low"><?=Low?></option>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-info btn-block">Crear!</button>
+                  <button type="submit" class="btn btn-info btn-block"><?=Create?></button>
                 </form>
               </div>
             </div>
@@ -186,6 +164,16 @@
 
   <script src="vendor/sumo-select/jquery.sumoselect.min.js"></script>
   <script src="js/preview/select.min.js"></script>
+  <script>
+  function validePrivate(){
+    if ($('#type').val() == 'Public') {
+      $('#tagsUsers').hide();
+    } else {
+      $('#tagsUsers').show();
+    }
+  }
+  validePrivate();
+  </script>
 
   <div class="sidebar-mobile-overlay"></div>
 

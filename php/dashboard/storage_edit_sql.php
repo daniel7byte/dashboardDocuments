@@ -14,9 +14,19 @@
   require_once("config/parameters.php");
   require_once("config/connection.php");
 
-  $query = $mysql->prepare("UPDATE storage SET description=:description, priority=:priority WHERE id=:id");
+  $tagsUsers = $_POST['users_nick'];
+
+  $users_nick = "";
+
+  for ($i=0; $i < count($tagsUsers); $i++) {
+    $users_nick .= $tagsUsers[$i] . ',';
+  }
+
+  $query = $mysql->prepare("UPDATE storage SET type=:type, users_nick=:users_nick, description=:description, priority=:priority WHERE id=:id");
   
   $query->execute([
+    ':type' => $_POST['type'],
+    ':users_nick' => $users_nick,
     ':description' => $_POST['description'],
     ':priority' => $_POST['priority'],
     ':id' => $_POST['id']

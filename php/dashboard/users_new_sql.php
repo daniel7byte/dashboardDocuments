@@ -20,12 +20,11 @@
 
   $hash = password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
 
-  $query = $mysql->prepare("INSERT INTO users (id, nick, password, full_name, role, id_zone) VALUES (NULL, :nick, :password, :full_name, :role, :id_zone)");
+  $query = $mysql->prepare("INSERT INTO users (id, nick, password, full_name, role) VALUES (NULL, :nick, :password, :full_name, :role)");
   $query->execute([
       ':nick' => $_POST['nick'],
       ':password' => $hash,
       ':full_name' => $_POST['full_name'],
-      ':id_zone' => $_POST['id_zone'],
       ':role' => $_POST['role']
   ]);
 

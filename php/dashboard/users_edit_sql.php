@@ -20,13 +20,13 @@
 
   $hash = password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
 
-  $query = $mysql->prepare("UPDATE users SET nick=:nick, full_name=:full_name, password=:hash, role=:role, id_zone=:id_zone WHERE id=:id");
-  
+  $query = $mysql->prepare("UPDATE users SET nick=:nick, full_name=:full_name, password=:hash, role=:role WHERE id=:id");
+
   $query->execute([
     ':nick' => $_POST['nick'],
     ':full_name' => $_POST['full_name'],
-    ':id_zone' => $_POST['id_zone'],
     ':hash' => $hash,
+    ':role' => $_POST['role'],
     ':id' => $_POST['id']
   ]);
 

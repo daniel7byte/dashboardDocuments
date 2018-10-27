@@ -11,7 +11,7 @@
       <li class="sidebar-nav__item">
         <a class="sidebar-nav__link" href="home.php">
           <span class="sidebar-nav__item_icon ua-icon-home"></span>
-          <span class="sidebar-nav__item-text">Inicio</span>
+          <span class="sidebar-nav__item-text"><?=HOME?></span>
         </a>
       </li>
       <li class="sidebar-nav__item">
@@ -20,34 +20,34 @@
           <span class="sidebar-nav__item-text"><?=DOCUMENTS?></span>
         </a>
       </li>
-      <li class="sidebar-nav__item">
+      <!-- <li class="sidebar-nav__item">
         <a class="sidebar-nav__link" href="home_news.php">
           <span class="sidebar-nav__item_icon ua-icon-calendar"></span>
           <span class="sidebar-nav__item-text">Noticias</span>
         </a>
-      </li>
+      </li> -->
       <?php if($_SESSION['role'] == "ADMIN"): ?>
         <li class="sidebar-nav__item">
           <a class="sidebar-nav__link" href="users.php">
             <span class="mdi mdi-account-multiple sidebar-section-nav__item-icon"></span>
-            <span class="sidebar-nav__item-text">Admin - Usuarios</span>
+            <span class="sidebar-nav__item-text">Admin - <?=USERS?></span>
           </a>
           <ul class="sidebar-subnav" style="display: none;">
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users.php">Usuarios</a></li>
+            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users.php"><?=USERS?></a></li>
             <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users_new.php">Crear nuevo</a></li>
           </ul>
         </li>
         <li class="sidebar-nav__item">
           <a class="sidebar-nav__link" href="storage.php">
             <span class="sidebar-nav__item_icon ua-icon-folder"></span>
-            <span class="sidebar-nav__item-text">Admin - Documentos</span>
+            <span class="sidebar-nav__item-text">Admin - <?=DOCUMENTS?></span>
           </a>
           <ul class="sidebar-subnav" style="display: none;">
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="storage.php">Documentos</a></li>
+            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="storage.php"><?=DOCUMENTS?></a></li>
             <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="storage_new.php">Crear nuevo</a></li>
           </ul>
         </li>
-        <li class="sidebar-nav__item">
+        <!-- <li class="sidebar-nav__item">
           <a class="sidebar-nav__link" href="news.php">
             <span class="sidebar-nav__item_icon ua-icon-calendar"></span>
             <span class="sidebar-nav__item-text">Admin - Noticias</span>
@@ -56,18 +56,18 @@
             <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="news.php">Noticia</a></li>
             <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="news_new.php">Crear nueva</a></li>
           </ul>
-        </li>
+        </li> -->
       <?php endif; ?>
       <li class="sidebar-nav__item">
         <a class="sidebar-nav__link" href="my_account.php">
           <span class="sidebar-nav__item_icon ua-icon-person"></span>
-          <span class="sidebar-nav__item-text">Cambiar contraseña</span>
+          <span class="sidebar-nav__item-text"><?=ChangePassword?></span>
         </a>
       </li>
       <li class="sidebar-nav__item">
         <a class="sidebar-nav__link" href="auth/logout.php">
           <span class="sidebar-nav__item_icon ua-icon-close"></span>
-          <span class="sidebar-nav__item-text">Cerrar sesión</span>
+          <span class="sidebar-nav__item-text"><?=SignOff?></span>
         </a>
       </li>
     </ul>
