@@ -19,6 +19,26 @@
           <span class="sidebar-nav__item_icon ua-icon-folder"></span>
           <span class="sidebar-nav__item-text"><?=DOCUMENTS?></span>
         </a>
+        <ul class="sidebar-subnav" style="display: none;">
+          <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="home_storage.php"><?=All.' '.DOCUMENTS?></a></li>
+          
+          <?php
+
+            require_once("config/parameters.php");
+            require_once("config/connection.php");
+
+            $users_nick = $_SESSION['nick'];
+
+             $query = $mysql->prepare("SELECT * FROM category ORDER BY id DESC");
+            $query->execute();
+            $result = $query->fetchAll();
+
+            foreach ($result as $row):
+          ?>
+            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="home_storage_category.php?category=<?=$row['id']?>"><span class="mdi mdi-trending-neutral"></span> <?=$row['name']?></a></li>
+          <?php endforeach; ?>
+
+        </ul>
       </li>
       <!-- <li class="sidebar-nav__item">
         <a class="sidebar-nav__link" href="home_news.php">
@@ -26,29 +46,27 @@
           <span class="sidebar-nav__item-text">Noticias</span>
         </a>
       </li> -->
+      <li class="sidebar-nav__item">
+        <a class="sidebar-nav__link" href="category.php">
+          <span class="mdi mdi-flag sidebar-section-nav__item-icon"></span>
+          <span class="sidebar-nav__item-text">Admin - <?=CATEGORY?></span>
+        </a>
+        <ul class="sidebar-subnav" style="display: none;">
+          <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="category.php"><?=CATEGORY?></a></li>
+          <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="category_new.php"><?=Create?></a></li>
+        </ul>
+      </li>
+      <li class="sidebar-nav__item">
+        <a class="sidebar-nav__link" href="users.php">
+          <span class="mdi mdi-account-multiple sidebar-section-nav__item-icon"></span>
+          <span class="sidebar-nav__item-text">Admin - <?=USERS?></span>
+        </a>
+        <ul class="sidebar-subnav" style="display: none;">
+          <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users.php"><?=USERS?></a></li>
+          <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users_new.php"><?=Create?></a></li>
+        </ul>
+      </li>
       <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
-        <?php if($_SESSION['role'] == "ADMIN"): ?>
-        <li class="sidebar-nav__item">
-          <a class="sidebar-nav__link" href="category.php">
-            <span class="mdi mdi-account-multiple sidebar-section-nav__item-icon"></span>
-            <span class="sidebar-nav__item-text">Admin - <?=CATEGORY?></span>
-          </a>
-          <ul class="sidebar-subnav" style="display: none;">
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="category.php"><?=CATEGORY?></a></li>
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="category_new.php"><?=Create?></a></li>
-          </ul>
-        </li>
-        <li class="sidebar-nav__item">
-          <a class="sidebar-nav__link" href="users.php">
-            <span class="mdi mdi-account-multiple sidebar-section-nav__item-icon"></span>
-            <span class="sidebar-nav__item-text">Admin - <?=USERS?></span>
-          </a>
-          <ul class="sidebar-subnav" style="display: none;">
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users.php"><?=USERS?></a></li>
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users_new.php"><?=Create?></a></li>
-          </ul>
-        </li>
-        <?php endif; ?>
         <li class="sidebar-nav__item">
           <a class="sidebar-nav__link" href="storage.php">
             <span class="sidebar-nav__item_icon ua-icon-folder"></span>

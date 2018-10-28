@@ -7,6 +7,7 @@ define("USERS", 'Usuarios');
 
 define("File", 'Archivo');
 define("Enter", 'Entrar');
+define("All", 'Todos los');
 
 // Btn
 define("Create", 'Crear');
