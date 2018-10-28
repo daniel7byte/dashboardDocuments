@@ -17,7 +17,6 @@
     $nick = $row['nick'];
     $full_name = $row['full_name'];
     $role = $row['role'];
-    $id_zone = $row['id_zone'];
   }
 
   include 'dictionary/langHandler.php';
@@ -82,7 +81,7 @@
 
           <div class="page-content__header">
             <div>
-              <h2 class="page-content__header-heading">Usuarios</h2>
+              <h2 class="page-content__header-heading"><?=USERS?></h2>
             </div>
           </div>
 
@@ -94,12 +93,12 @@
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <div class="fl-wrap fl-wrap-input">
-                        <label for="password" class="fl-label">Nueva contraseña</label>
+                        <label for="password" class="fl-label"><?=Update.' '.Password?></label>
                         <input type="password" class="form-control fl-input" id="password" name="password" placeholder="*****" data-placeholder="*****" required="required">
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-info btn-block" type="submit">Editar!</button>
+                  <button class="btn btn-info btn-block" type="submit"><?=Update?></button>
                 </form>
               </div>
             </div>
