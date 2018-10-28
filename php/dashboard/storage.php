@@ -105,7 +105,15 @@
                   <td><?=date_format(date_create($row['date']), 'd-m-Y')?></td>
                   <td><a href="storage/<?=$row['file']?>"><?=$row['description']?></a></td>
                   <td><?=$row['priority']?></td>
-                  <td><?=$row['users_nick']?></td>
+                  <td>
+                    <?php
+                    if($row['type'] == "Public"){
+                      echo "<b>PUBLIC</b>";
+                    }elseif($row['type'] == "Private"){
+                      echo $row['users_nick'];
+                    }
+                    ?>
+                  </td>
                   <td>
                     <a class="btn btn-outline-success icon-center mr-3" href="storage/<?=$row['file']?>"><span class="btn-icon ua-icon-download"></span></a>
                     <?php if($_SESSION['role'] == "ADMIN"): ?>
@@ -151,13 +159,15 @@
   <script src="vendor/datatables/datatables.min.js"></script>
   <script src="js/preview/datatables.min.js"></script>
 
-  <?php if($_SESSION['role'] == "ADMIN"): ?>
   <script>
     $('#tableStorage').DataTable( {
-        select: {
-            info: false
-        }
+      select: {
+        info: false
+      }
     } );
+  </script>
+  <?php if($_SESSION['role'] == "ADMIN"): ?>
+  <script>
     function val_check(id) {
       $.ajax({
       type: 'POST',

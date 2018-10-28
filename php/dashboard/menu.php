@@ -26,7 +26,8 @@
           <span class="sidebar-nav__item-text">Noticias</span>
         </a>
       </li> -->
-      <?php if($_SESSION['role'] == "ADMIN"): ?>
+      <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
+        <?php if($_SESSION['role'] == "ADMIN"): ?>
         <li class="sidebar-nav__item">
           <a class="sidebar-nav__link" href="users.php">
             <span class="mdi mdi-account-multiple sidebar-section-nav__item-icon"></span>
@@ -37,6 +38,7 @@
             <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users_new.php">Crear nuevo</a></li>
           </ul>
         </li>
+        <?php endif; ?>
         <li class="sidebar-nav__item">
           <a class="sidebar-nav__link" href="storage.php">
             <span class="sidebar-nav__item_icon ua-icon-folder"></span>
