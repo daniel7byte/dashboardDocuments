@@ -24,9 +24,6 @@
     $nameCat = $rowCat['name'];
   }
 ?>
-  
-
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -91,7 +88,7 @@
             </div>
           </div>
           <div class="m-datatable">
-            <table id="datatable" class="table table-striped">
+            <table id="tableStorage" class="table table-striped">
               <thead>
               <tr>
                 <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
@@ -217,6 +214,38 @@
 
   <script src="vendor/datatables/datatables.min.js"></script>
   <script src="js/preview/datatables.min.js"></script>
+
+  <script>
+    $('#tableStorage').DataTable( {
+      select: {
+        info: false
+      }
+    } );
+  </script>
+  <?php if($_SESSION['role'] == "ADMIN"): ?>
+  <script>
+    function val_check(id) {
+      $.ajax({
+      type: 'POST',
+        url: 'ajax_check.php',
+        data: {
+          id: id
+        },
+        success: function(result){
+          if(result == 'N'){
+            $("#"+"val_check_"+id).removeClass('btn-outline-success');
+            $("#"+"val_check_"+id).addClass('btn-outline-danger');
+          }else if(result == 'Y'){
+            $("#"+"val_check_"+id).removeClass('btn-outline-danger');
+            $("#"+"val_check_"+id).addClass('btn-outline-success');
+          }else{
+            console.log(result);
+          }
+        }
+      });
+    }
+  </script>
+  <?php endif; ?>
 
 
   <div class="sidebar-mobile-overlay"></div>
