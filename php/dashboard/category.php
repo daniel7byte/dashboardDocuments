@@ -6,7 +6,7 @@
     exit;
   }
 
-  if($_SESSION['role'] != "ADMIN" AND $_SESSION['role'] != "EDITOR"){
+  if($_SESSION['role'] != "ADMIN"){
     header('Location: 403.php');
     exit;
   }
@@ -73,19 +73,15 @@
 
           <div class="page-content__header">
             <div>
-              <h2 class="page-content__header-heading"><?=DOCUMENTS?></h2>
+              <h2 class="page-content__header-heading"><?=CATEGORY?></h2>
             </div>
           </div>
           <div class="m-datatable">
-            <table id="tableStorage" class="table table-striped">
+            <table id="datatable" class="table table-striped">
               <thead>
               <tr>
                 <th>ID</th>
-                <th><?=Date?></th>
-                <th><?=Description?></th>
-                <th><?=Priority?></th>
-                <th><?=USERS?></th>
-                <th><?=CATEGORY?></th>
+                <th><?=Name?></th>
                 <th><?=Actions?></th>
               </tr>
               </thead>
@@ -95,7 +91,7 @@
                   require_once("config/parameters.php");
                   require_once("config/connection.php");
 
-                  $query = $mysql->prepare("SELECT * FROM storage ORDER BY id DESC");
+                  $query = $mysql->prepare("SELECT * FROM category ORDER BY id DESC");
                   $query->execute();
                   $result = $query->fetchAll();
 
@@ -103,44 +99,15 @@
                 ?>
                 <tr>
                   <td><?=$row['id']?></td>
-                  <td><?=date_format(date_create($row['date']), 'd-m-Y')?></td>
-                  <td><a href="storage/<?=$row['file']?>"><?=$row['description']?></a></td>
-                  <td><?=$row['priority']?></td>
+                  <td><?=$row['name']?></td>
                   <td>
-                    <?php
-                    if($row['type'] == "Public"){
-                      echo "<b>PUBLIC</b>";
-                    }elseif($row['type'] == "Private"){
-                      echo $row['users_nick'];
-                    }
-                    ?>
-                  </td>
-                  <td>
-                    <?php
-                      require_once("config/parameters.php");
-                      require_once("config/connection.php");
-
-                      $query = $mysql->prepare("SELECT * FROM category WHERE id = :id");
-                      $query->execute([':id' => $row['category']]);
-                      $result = $query->fetchAll();
-
-                      foreach ($result as $rowCat):
-                        echo $rowCat['name'];
-                      endforeach;
-                    ?>
-                  </td>
-                  <td>
-                    <a class="btn btn-outline-success icon-center mr-3" href="storage/<?=$row['file']?>"><span class="btn-icon ua-icon-download"></span></a>
-                    <?php if($_SESSION['role'] == "ADMIN"): ?>
-                      <a class="btn <?=(($row['file_check'] == 'N') ? 'btn-outline-danger' : 'btn-outline-success')?> icon-center mr-3" href="#" id="val_check_<?=$row['id']?>" onclick="val_check(<?=$row['id']?>);"><span class="btn-icon ua-icon-check"></span></a>
-                    <?php endif; ?>
                     <div class="dropdown card-widget-d__dropdown">
                       <button class="btn btn-outline-info dropdown-toggle card-widget-d__control" type="button" data-toggle="dropdown">
                         <?=Edit?>
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="storage_edit.php?id=<?=$row['id']?>"><?=Edit?></a>
-                        <a class="dropdown-item" href="storage_delete_sql.php?id=<?=$row['id']?>"><?=Delete?></a>
+                        <a class="dropdown-item" href="category_edit.php?id=<?=$row['id']?>"><?=Edit?></a>
+                        <a class="dropdown-item" href="category_delete_sql.php?id=<?=$row['id']?>"><?=Delete?></a>
                       </div>
                     </div>
                   </td>
@@ -174,37 +141,6 @@
   <script src="vendor/datatables/datatables.min.js"></script>
   <script src="js/preview/datatables.min.js"></script>
 
-  <script>
-    $('#tableStorage').DataTable( {
-      select: {
-        info: false
-      }
-    } );
-  </script>
-  <?php if($_SESSION['role'] == "ADMIN"): ?>
-  <script>
-    function val_check(id) {
-      $.ajax({
-      type: 'POST',
-        url: 'ajax_check.php',
-        data: {
-          id: id
-        },
-        success: function(result){
-          if(result == 'N'){
-            $("#"+"val_check_"+id).removeClass('btn-outline-success');
-            $("#"+"val_check_"+id).addClass('btn-outline-danger');
-          }else if(result == 'Y'){
-            $("#"+"val_check_"+id).removeClass('btn-outline-danger');
-            $("#"+"val_check_"+id).addClass('btn-outline-success');
-          }else{
-            console.log(result);
-          }
-        }
-      });
-    }
-  </script>
-  <?php endif; ?>
 
   <div class="sidebar-mobile-overlay"></div>
 

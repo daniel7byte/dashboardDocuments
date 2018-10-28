@@ -29,13 +29,23 @@
       <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
         <?php if($_SESSION['role'] == "ADMIN"): ?>
         <li class="sidebar-nav__item">
+          <a class="sidebar-nav__link" href="category.php">
+            <span class="mdi mdi-account-multiple sidebar-section-nav__item-icon"></span>
+            <span class="sidebar-nav__item-text">Admin - <?=CATEGORY?></span>
+          </a>
+          <ul class="sidebar-subnav" style="display: none;">
+            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="category.php"><?=CATEGORY?></a></li>
+            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="category_new.php"><?=Create?></a></li>
+          </ul>
+        </li>
+        <li class="sidebar-nav__item">
           <a class="sidebar-nav__link" href="users.php">
             <span class="mdi mdi-account-multiple sidebar-section-nav__item-icon"></span>
             <span class="sidebar-nav__item-text">Admin - <?=USERS?></span>
           </a>
           <ul class="sidebar-subnav" style="display: none;">
             <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users.php"><?=USERS?></a></li>
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users_new.php">Crear nuevo</a></li>
+            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="users_new.php"><?=Create?></a></li>
           </ul>
         </li>
         <?php endif; ?>
@@ -46,7 +56,7 @@
           </a>
           <ul class="sidebar-subnav" style="display: none;">
             <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="storage.php"><?=DOCUMENTS?></a></li>
-            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="storage_new.php">Crear nuevo</a></li>
+            <li class="sidebar-subnav__item"><a class="sidebar-subnav__link" href="storage_new.php"><?=Create?></a></li>
           </ul>
         </li>
         <!-- <li class="sidebar-nav__item">

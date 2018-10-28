@@ -22,13 +22,14 @@
     $users_nick .= $tagsUsers[$i] . ',';
   }
 
-  $query = $mysql->prepare("UPDATE storage SET type=:type, users_nick=:users_nick, description=:description, priority=:priority WHERE id=:id");
+  $query = $mysql->prepare("UPDATE storage SET type=:type, users_nick=:users_nick, description=:description, priority=:priority, category=:category WHERE id=:id");
   
   $query->execute([
     ':type' => $_POST['type'],
     ':users_nick' => $users_nick,
     ':description' => $_POST['description'],
     ':priority' => $_POST['priority'],
+    ':category' => $_POST['category'],
     ':id' => $_POST['id']
   ]);
 

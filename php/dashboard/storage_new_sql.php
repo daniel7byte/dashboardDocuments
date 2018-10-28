@@ -33,13 +33,14 @@
           $users_nick .= $tagsUsers[$i] . ',';
         }
 
-        $query = $mysql->prepare("INSERT INTO storage (id, description, file, priority, users_nick, type, file_check) VALUES (NULL, :description, :file, :priority, :users_nick, :type, :file_check)");
+        $query = $mysql->prepare("INSERT INTO storage (id, description, file, priority, users_nick, type, file_check, category) VALUES (NULL, :description, :file, :priority, :users_nick, :type, :file_check, :category)");
         $query->execute([
           ':file_check' => 'N',
           ':users_nick' => $users_nick,
           ':type' => $_POST['type'],
           ':description' => $_POST['description'],
           ':file' => time() . "_" . $_FILES["file"]["name"],
+          ':category' => $_POST['category'],
           ':priority' => $_POST['priority']
         ]);
 

@@ -127,6 +127,27 @@
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
+                      <div class="fl-wrap fl-wrap-select"><label for="category" class="fl-label"><?=CATEGORY?></label>
+                        <select id="category" name="category" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
+                          <?php
+
+                            require_once("config/parameters.php");
+                            require_once("config/connection.php");
+
+                            $query = $mysql->prepare("SELECT * FROM category ORDER BY id DESC");
+                            $query->execute();
+                            $result = $query->fetchAll();
+
+                            foreach ($result as $row):
+                              echo "<option value='".$row['id']."'>".$row['name']."</option>";
+                            endforeach;
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
                       <div class="fl-wrap fl-wrap-select"><label for="priority" class="fl-label"><?=Priority?></label>
                         <select id="priority" name="priority" class="form-control select2-hidden-accessible fl-select" tabindex="-1" aria-hidden="true">
                           <option value="Critical"><?=Critical?></option>

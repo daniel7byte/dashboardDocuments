@@ -2,6 +2,7 @@
 define("LANG", 'EN');
 define("HOME", 'Home');
 define("DOCUMENTS", 'Documents');
+define("CATEGORY", 'Category');
 define("USERS", 'Users');
 
 define("File", 'File');

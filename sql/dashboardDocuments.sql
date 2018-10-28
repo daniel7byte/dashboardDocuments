@@ -16,6 +16,20 @@
 CREATE DATABASE IF NOT EXISTS `dashboarddocuments` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `dashboarddocuments`;
 
+-- Volcando estructura para tabla dashboarddocuments.category
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Volcando datos para la tabla dashboarddocuments.category: ~2 rows (aproximadamente)
+DELETE FROM `category`;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` (`id`, `name`) VALUES
+	(1, 'Oficina');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+
 -- Volcando estructura para tabla dashboarddocuments.news
 CREATE TABLE IF NOT EXISTS `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -41,14 +55,15 @@ CREATE TABLE IF NOT EXISTS `storage` (
   `priority` enum('Critical','High','Medium','Low') COLLATE utf8_unicode_ci NOT NULL,
   `file_check` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL,
   `type` enum('Private','Public') COLLATE utf8_unicode_ci NOT NULL,
+  `category` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla dashboarddocuments.storage: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla dashboarddocuments.storage: ~1 rows (aproximadamente)
 DELETE FROM `storage`;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
-INSERT INTO `storage` (`id`, `users_nick`, `description`, `file`, `date`, `priority`, `file_check`, `type`) VALUES
-	(1, 'enriqueposso,daniel7byte,', 'Hola', '1540665074_20181025_prueba_soporte_dev.txt', '2018-10-27 13:31:14', 'Critical', 'N', 'Public');
+INSERT INTO `storage` (`id`, `users_nick`, `description`, `file`, `date`, `priority`, `file_check`, `type`, `category`) VALUES
+	(1, 'enriqueposso,daniel7byte,', 'Hola', '1540665074_20181025_prueba_soporte_dev.txt', '2018-10-27 13:31:14', 'Critical', 'N', 'Private', 1);
 /*!40000 ALTER TABLE `storage` ENABLE KEYS */;
 
 -- Volcando estructura para tabla dashboarddocuments.users
@@ -67,7 +82,7 @@ DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `nick`, `password`, `full_name`, `role`) VALUES
 	(1, 'daniel7byte', '$2y$12$K5/h4DbD4v7iYnjHRYpKCuXFX9hHRDz5texkgzfTeTNydKl3YnBYS', 'Jose Posso', 'ADMIN'),
-	(2, 'enriqueposso', '$2y$12$rek1y5dnCr9EPPL.xUsisecTJ0.cp67wM0FmORAKE2oY9dzc8Q7wK', 'Enrique Posso', 'ADMIN');
+	(2, 'enriqueposso', '$2y$12$iUze7YKCgYgqhKBGHuE.Nu94WKzIDdVmnAJvc2X7SrddJCCvIhOJ6', 'Enrique Posso', 'EDITOR');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
