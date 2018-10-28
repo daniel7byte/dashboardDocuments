@@ -84,6 +84,7 @@
                 <th><?=Date?></th>
                 <th><?=Description?></th>
                 <th><?=Priority?></th>
+                <th><?=USERS?></th>
                 <th><?=Actions?></th>
               </tr>
               </thead>
@@ -104,6 +105,7 @@
                   <td><?=date_format(date_create($row['date']), 'd-m-Y')?></td>
                   <td><a href="storage/<?=$row['file']?>"><?=$row['description']?></a></td>
                   <td><?=$row['priority']?></td>
+                  <td><?=$row['users_nick']?></td>
                   <td>
                     <a class="btn btn-outline-success icon-center mr-3" href="storage/<?=$row['file']?>"><span class="btn-icon ua-icon-download"></span></a>
                     <?php if($_SESSION['role'] == "ADMIN"): ?>

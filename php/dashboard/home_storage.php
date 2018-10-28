@@ -89,7 +89,7 @@
 
                   $users_nick = $_SESSION['nick'];
 
-                  $query = $mysql->prepare("SELECT * FROM storage WHERE file_check = 'Y' AND type = 'Public' OR users_nick LIKE :users_nick ORDER BY id DESC");
+                   $query = $mysql->prepare("SELECT * FROM (SELECT * FROM storage WHERE type = 'Public' OR users_nick LIKE :users_nick ORDER BY id DESC) AS t WHERE t.file_check = 'Y'");
                   $query->execute([':users_nick' => "%$users_nick%"]);
                   $result = $query->fetchAll();
 
