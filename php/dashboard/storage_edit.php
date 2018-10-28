@@ -131,7 +131,7 @@
                             require_once("config/parameters.php");
                             require_once("config/connection.php");
 
-                            $query = $mysql->prepare("SELECT * FROM users ORDER BY id DESC");
+                            $query = $mysql->prepare("SELECT * FROM users WHERE role = 'USER' ORDER BY id DESC");
                             $query->execute();
                             $result = $query->fetchAll();
 
