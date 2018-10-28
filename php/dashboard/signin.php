@@ -35,6 +35,17 @@
 
 
   <script src="js/ie.assign.fix.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    function onSubmit() {
+      var form = document.getElementById("loginForm").submit();
+      if (validate_form(form)) {
+          form.submit();
+      } else {
+          grecaptcha.reset();
+      }
+    }
+  </script>
 </head>
 <body class="p-front">
 
@@ -67,7 +78,7 @@
 <div class="p-front__content">
 
 <div class="p-signin">
-  <form class="p-signin__form" method="POST" action="auth/validation.php">
+  <form id="loginForm" class="p-signin__form" method="POST" action="auth/validation.php">
     <h2 class="p-signin__form-heading">Dashboard Documents 3.0</h2>
     <div class="p-signin__form-content">
       <div class="row">
@@ -83,7 +94,12 @@
         </div>
       </div>
       <div>
-        <button type="submit" class="btn btn-info btn-block btn-lg p-signin__form-submit"><?=Enter?></button>
+        <button
+          class="g-recaptcha btn btn-info btn-block btn-lg p-signin__form-submit"
+          data-sitekey="6LcyGncUAAAAAEiYXXkNEswqWOGlPAHGT64uyD8_"
+          data-callback="onSubmit">
+          <?=Enter?>
+        </button>
       </div>
     </div>
   </form>
