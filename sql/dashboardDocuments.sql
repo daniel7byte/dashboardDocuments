@@ -34,19 +34,21 @@ DELETE FROM `news`;
 -- Volcando estructura para tabla dashboarddocuments.storage
 CREATE TABLE IF NOT EXISTS `storage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `users_nick` text COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `file` text COLLATE utf8_unicode_ci NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `priority` enum('Critical','High','Medium','Low') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Medium',
-  `check` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL,
+  `priority` enum('Critical','High','Medium','Low') COLLATE utf8_unicode_ci NOT NULL,
+  `file_check` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL,
   `type` enum('Private','Public') COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Volcando datos para la tabla dashboarddocuments.storage: ~0 rows (aproximadamente)
 DELETE FROM `storage`;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
+INSERT INTO `storage` (`id`, `users_nick`, `description`, `file`, `date`, `priority`, `file_check`, `type`) VALUES
+	(1, 'enriqueposso,daniel7byte,', 'Hola', '1540665074_20181025_prueba_soporte_dev.txt', '2018-10-27 13:31:14', 'Critical', 'N', 'Public');
 /*!40000 ALTER TABLE `storage` ENABLE KEYS */;
 
 -- Volcando estructura para tabla dashboarddocuments.users
@@ -55,16 +57,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nick` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` text COLLATE utf8_unicode_ci NOT NULL,
   `full_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `role` enum('ADMIN','USER','EDITOR') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'USER',
-  PRIMARY KEY (`id`)
+  `role` enum('ADMIN','USER','EDITOR') COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nick` (`nick`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla dashboarddocuments.users: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla dashboarddocuments.users: ~2 rows (aproximadamente)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `nick`, `password`, `full_name`, `role`) VALUES
 	(1, 'daniel7byte', '$2y$12$K5/h4DbD4v7iYnjHRYpKCuXFX9hHRDz5texkgzfTeTNydKl3YnBYS', 'Jose Posso', 'ADMIN'),
-	(2, 'enriqueposso', '$2y$12$K5/h4DbD4v7iYnjHRYpKCuXFX9hHRDz5texkgzfTeTNydKl3YnBYS', 'Jose Posso', 'ADMIN');
+	(2, 'enriqueposso', '$2y$12$rek1y5dnCr9EPPL.xUsisecTJ0.cp67wM0FmORAKE2oY9dzc8Q7wK', 'Enrique Posso', 'ADMIN');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
