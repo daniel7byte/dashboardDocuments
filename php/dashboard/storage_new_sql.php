@@ -6,7 +6,7 @@
     exit;
   }
 
-  if($_SESSION['role'] != "ADMIN"){
+  if($_SESSION['role'] != "ADMIN" AND $_SESSION['role'] != "EDITOR"){
     header('Location: 403.php');
     exit;
   }
