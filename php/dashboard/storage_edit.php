@@ -18,12 +18,12 @@
   $query->execute([':id' => $_GET['id']]);
   $result = $query->fetchAll();
 
-  foreach ($result as $row){
-    $description = $row['description'];
-    $priority = $row['priority'];
-    $type = $row['type'];
-    $users_nick = $row['users_nick'];
-    $category = $row['category'];
+  foreach ($result as $rowStor){
+    $description = $rowStor['description'];
+    $priority = $rowStor['priority'];
+    $type = $rowStor['type'];
+    $users_nick = $rowStor['users_nick'];
+    $category = $rowStor['category'];
   }
 
   include 'dictionary/langHandler.php';
@@ -135,8 +135,8 @@
                             $query->execute();
                             $result = $query->fetchAll();
 
-                            foreach ($result as $row):
-                              echo "<option value='".$row['nick']."'>".$row['nick']."</option>";
+                            foreach ($result as $rowUser):
+                              echo "<option value='".$rowUser['nick']."'>".$rowUser['nick']."</option>";
                             endforeach;
                           ?>
                         </select>
@@ -231,11 +231,23 @@
   <script src="vendor/sumo-select/jquery.sumoselect.min.js"></script>
   <script src="js/preview/select.min.js"></script>
   <script>
+    <?php
+
+      $querySelect = $mysql->prepare("SELECT * FROM storage WHERE id = :id");
+      $querySelect->execute([':id' => $_GET['id']]);
+      $resultSelect = $querySelect->fetchAll();
+
+      foreach ($resultSelect as $rowStorSelect){
+        $users_nick_select = $rowStorSelect['users_nick'];
+      }
+    ?>
     $(function() {
       <?php
-        $arrayTags = explode(',', $users_nick);
+        $arrayTags = explode(',', $users_nick_select);
         foreach ($arrayTags as $user):
-          echo "$('select#selectbox-ex4')[0].sumo.selectItem('".$user."');";
+          if ($user != '') {
+            echo "$('select#selectbox-ex4')[0].sumo.selectItem('".$user."');";
+          }
         endforeach;
       ?>
     });
