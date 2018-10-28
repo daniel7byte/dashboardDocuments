@@ -94,9 +94,19 @@
             <table id="datatable" class="table table-striped">
               <thead>
               <tr>
+                <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
+                  <th>ID</th>
+                <?php endif; ?>
+
                 <th><?=Date?></th>
                 <th><?=Description?></th>
                 <th><?=Priority?></th>
+
+                <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
+                  <th><?=USERS?></th>
+                  <th><?=CATEGORY?></th>
+                <?php endif; ?>
+
                 <th><?=Actions?></th>
               </tr>
               </thead>
@@ -108,20 +118,75 @@
 
                   $users_nick = $_SESSION['nick'];
 
-                   $query = $mysql->prepare("SELECT * FROM (SELECT * FROM storage WHERE type = 'Public' OR users_nick LIKE :users_nick ORDER BY id DESC) AS t WHERE t.file_check = 'Y' AND t.category = :category");
-                  $query->execute([
-                    ':users_nick' => "%$users_nick%",
-                    ':category' => $_GET['category']
-                  ]);
+                  if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"){
+                    $query = $mysql->prepare("SELECT * FROM storage WHERE category = :category ORDER BY id DESC");
+                    $query->execute([
+                      ':category' => $_GET['category']
+                    ]);
+                  }else{
+                    $query = $mysql->prepare("SELECT * FROM (SELECT * FROM storage WHERE type = 'Public' OR users_nick LIKE :users_nick ORDER BY id DESC) AS t WHERE t.file_check = 'Y' AND t.category = :category");
+                    $query->execute([
+                      ':users_nick' => "%$users_nick%",
+                      ':category' => $_GET['category']
+                    ]);
+                  }
+
                   $result = $query->fetchAll();
 
                   foreach ($result as $row):
                 ?>
                 <tr>
+                  <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
+                    <td><?=$row['id']?></td>
+                  <?php endif; ?>
+
                   <td><?=date_format(date_create($row['date']), 'd-m-Y')?></td>
                   <td><a href="storage/<?=$row['file']?>"><?=$row['description']?></a></td>
                   <td><?=$row['priority']?></td>
-                  <td><a class="btn btn-outline-success icon-center mr-3" href="storage/<?=$row['file']?>"><span class="btn-icon ua-icon-download"></span></td>
+                  
+                  <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
+                    <td>
+                      <?php
+                      if($row['type'] == "Public"){
+                        echo "<b>PUBLIC</b>";
+                      }elseif($row['type'] == "Private"){
+                        echo $row['users_nick'];
+                      }
+                      ?>
+                    </td>
+                    <td>
+                      <?php
+                        require_once("config/parameters.php");
+                        require_once("config/connection.php");
+
+                        $query = $mysql->prepare("SELECT * FROM category WHERE id = :id");
+                        $query->execute([':id' => $row['category']]);
+                        $result = $query->fetchAll();
+
+                        foreach ($result as $rowCat):
+                          echo $rowCat['name'];
+                        endforeach;
+                      ?>
+                    </td>
+                  <?php endif; ?>
+                  <td>
+                    <a class="btn btn-outline-success icon-center mr-3" href="storage/<?=$row['file']?>"><span class="btn-icon ua-icon-download"></span></a>
+                    <?php if($_SESSION['role'] == "ADMIN"): ?>
+                      <a class="btn <?=(($row['file_check'] == 'N') ? 'btn-outline-danger' : 'btn-outline-success')?> icon-center mr-3" href="#" id="val_check_<?=$row['id']?>" onclick="val_check(<?=$row['id']?>);"><span class="btn-icon ua-icon-check"></span></a>
+                    <?php endif; ?>
+                    <?php if($_SESSION['role'] == "ADMIN" OR $_SESSION['role'] == "EDITOR"): ?>
+                    <div class="dropdown card-widget-d__dropdown">
+                      <button class="btn btn-outline-info dropdown-toggle card-widget-d__control" type="button" data-toggle="dropdown">
+                        <?=Edit?>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="storage_edit.php?id=<?=$row['id']?>"><?=Edit?></a>
+                        <a class="dropdown-item" href="storage_delete_sql.php?id=<?=$row['id']?>"><?=Delete?></a>
+                      </div>
+                    </div>
+                    <?php endif; ?>
+                  </td>
+
                 </tr>
                 <?php endforeach; ?>
 
